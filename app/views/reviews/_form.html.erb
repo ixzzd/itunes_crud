@@ -1,0 +1,20 @@
+<%= simple_form_for @review, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :author %>
+  <%= error_span(@review[:author]) %>
+  <%= f.input :im_version %>
+  <%= error_span(@review[:im_version]) %>
+  <%= f.input :im_rating %>
+  <%= error_span(@review[:im_rating]) %>
+  <%= f.input :itunes_id %>
+  <%= error_span(@review[:itunes_id]) %>
+  <%= f.input :title %>
+  <%= error_span(@review[:title]) %>
+  <%= f.input :content %>
+  <%= error_span(@review[:content]) %>
+  <%= f.input :app_id %>
+  <%= error_span(@review[:app_id]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                reviews_path, :class => 'btn btn-default' %>
+<% end %>

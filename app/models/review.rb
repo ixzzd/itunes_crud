@@ -1,3 +1,3 @@
 class Review < ActiveRecord::Base
-	has_one :app
+	belongs_to :app
 end
