@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-
   resources :apps, :reviews
 
   root 'apps#index'
+  get 'apps/import_reviews/:id' => 'apps#import_reviews'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

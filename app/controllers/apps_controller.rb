@@ -1,29 +1,35 @@
+require 'rake'
+
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
 
-  # GET /apps
-  # GET /apps.json
   def index
     @apps = App.all
   end
 
-  # GET /apps/1
-  # GET /apps/1.json
   def show
-    @reviews=@app.reviews
+    @reviews = @app.reviews.paginate(:page => params[:page])
+    respond_to do |format|
+        format.html
+        format.json {
+        render :json => {
+          :app=> @app,
+          :entries => @reviews,
+          :current_page => @reviews.current_page,
+          :per_page => @reviews.per_page,
+          :total_entries => @reviews.total_entries
+        }
+      }
+    end  
   end
 
-  # GET /apps/new
   def new
     @app = App.new
   end
 
-  # GET /apps/1/edit
   def edit
   end
 
-  # POST /apps
-  # POST /apps.json
   def create
     @app = App.new(app_params)
 
@@ -38,8 +44,6 @@ class AppsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /apps/1
-  # PATCH/PUT /apps/1.json
   def update
     respond_to do |format|
       if @app.update(app_params)
@@ -52,8 +56,6 @@ class AppsController < ApplicationController
     end
   end
 
-  # DELETE /apps/1
-  # DELETE /apps/1.json
   def destroy
     @app.destroy
     respond_to do |format|
@@ -62,13 +64,22 @@ class AppsController < ApplicationController
     end
   end
 
+  def import_reviews
+    
+    ItunesCrud::Application.load_tasks
+    Rake.application.invoke_task("review:import[#{params[:id]}]")
+
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
+
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_app
       @app = App.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def app_params
       params.require(:app).permit(:name, :itunes_id)
     end

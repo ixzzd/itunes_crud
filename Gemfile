@@ -1,14 +1,24 @@
 source 'https://rubygems.org'
 
+
+# Here my gems
 gem 'awesome_print'
+gem 'pry'
+gem 'pry-byebug'
+
 gem 'httparty'
+
 gem 'simple_form'
 gem 'twitter-bootstrap-rails', '~> 3.2.0'
+gem 'will_paginate-bootstrap'
+
+gem 'pg'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgres as the database for Active Record
-gem 'pg'
+gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
