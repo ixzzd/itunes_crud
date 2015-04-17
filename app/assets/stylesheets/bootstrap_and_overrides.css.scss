@@ -11,8 +11,8 @@ table-layout: fixed;
 word-wrap: break-word;
 }
 
-body {
-	background: url('images/pattern.png') repeat fixed;
+body { 
+	background: image_url('pattern.png') repeat fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
