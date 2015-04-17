@@ -9,7 +9,7 @@ class App < ActiveRecord::Base
 
 
 	def get_image_url
-		response = HTTParty.get("https://itunes.apple.com/ru/rss/customerreviews/id=#{self.itunes_id}/sortBy=mostRecent/rel=first/json")
+		response = HTTParty.get("https://itunes.apple.com/ru/rss/customerreviews/id=#{self.itunes_id}/page=1/sortBy=mostRecent/rel=first/json")
 		body = JSON.parse(response.body)
 		image_url = body['feed']['entry'][0]['im:image'][1]['label'] if body['feed']['entry']
 	end	
