@@ -1,6 +1,6 @@
 namespace :review do
   desc "import"
-  task :import, [:app_id] do |t, args|
+  task :import, [:app_id] => :environment do |t, args|
 
   	app=App.find(args[:app_id])
   	response = HTTParty.get("https://itunes.apple.com/ru/rss/customerreviews/id=#{app.itunes_id}/sortBy=mostRecent/json")
