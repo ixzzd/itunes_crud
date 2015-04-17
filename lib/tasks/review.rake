@@ -2,12 +2,10 @@ namespace :review do
   desc "import"
   task :import, [:app_id] => :environment do |t, args|
 
-  	puts '!!!0'
   	app=App.find(args[:app_id])
-  	response = HTTParty.get("https://itunes.apple.com/ru/rss/customerreviews/id=#{app.itunes_id}/sortBy=mostRecent/json")
+  	response = HTTParty.get("https://itunes.apple.com/ru/rss/customerreviews/id=540328259/sortBy=mostRecent/rel=first/json")
 	body = JSON.parse(response.body)
 
-	puts '!!!1'
 	if body['feed']['entry']
 
 	puts body['feed']['entry']
