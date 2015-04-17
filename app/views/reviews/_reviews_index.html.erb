@@ -1,0 +1,37 @@
+<%- model_class = Review -%>
+
+<%if @reviews %>
+  <table class="table table-striped" id="reviews">
+    <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:author) %></th>
+        <th><%= model_class.human_attribute_name(:im_version) %></th>
+        <th><%= model_class.human_attribute_name(:im_rating) %></th>
+        <th><%= model_class.human_attribute_name(:itunes_id) %></th>
+        <th><%= model_class.human_attribute_name(:title) %></th>
+        <th><%= model_class.human_attribute_name(:content) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+    </thead>
+    <tbody class = 'page'>
+     <%= render @reviews %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @reviews, renderer: BootstrapPagination::Rails %> 
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+    if ($('.pagination').length) {
+      $(window).scroll(function() {
+        var url = $('.pagination .next').children(1).attr('href');
+        if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+          $('.pagination').text("Please Wait...");
+          return $.getScript(url);
+        }
+      });
+      return $(window).scroll();
+    }
+  });
+  </script>
+<% end %>  

@@ -11,6 +11,7 @@ class AppsController < ApplicationController
     @reviews = @app.reviews.paginate(:page => params[:page])
     respond_to do |format|
         format.html
+        format.js 
         format.json {
         render :json => {
           :app=> @app,
@@ -65,10 +66,8 @@ class AppsController < ApplicationController
   end
 
   def import_reviews
-    
     ItunesCrud::Application.load_tasks
     Rake.application.invoke_task("review:import[#{params[:id]}]")
-
     respond_to do |format|
       format.js {render inline: "location.reload();" }
     end

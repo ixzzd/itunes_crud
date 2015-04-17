@@ -2,7 +2,11 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   def index
-    @reviews = Review.all
+    @reviews = Review.all.page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js # add this line for your js template
+    end
   end
 
   def show

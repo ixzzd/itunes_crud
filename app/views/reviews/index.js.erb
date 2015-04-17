@@ -1,0 +1,2 @@
+$('#reviews').append('<%= escape_javascript render(@reviews) %>');
+$('.pagination').replaceWith('<%= escape_javascript will_paginate(@reviews, renderer: BootstrapPagination::Rails) %>');
