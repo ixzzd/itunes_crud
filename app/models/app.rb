@@ -3,7 +3,7 @@ class App < ActiveRecord::Base
 	
 	validates :name, :presence => true
 	validates :itunes_id, :presence => true, :format => { :with => /\d{9}/, :message => "iTunes id has wrong format" }
-	# validate :image_itunes_id
+	validate :image_itunes_id
 
 	before_save :save_image
 
@@ -15,7 +15,7 @@ class App < ActiveRecord::Base
 	end	
 
 	def image_itunes_id
-		errors.add(:itunes_id, "Can't verify iTunes id") unless self.get_image_url
+		errors.add(:itunes_id, "Can't load preview for this iTunes id, try to do it later") unless self.get_image_url
 	end	
 
 	def save_image
