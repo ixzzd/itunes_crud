@@ -12,7 +12,7 @@ word-wrap: break-word;
 }
 
 body {
-	background: url('pattern.png') repeat fixed;
+	background: url('images/pattern.png') repeat fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
