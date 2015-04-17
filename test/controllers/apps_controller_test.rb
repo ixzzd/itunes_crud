@@ -18,7 +18,7 @@ class AppsControllerTest < ActionController::TestCase
 
   test "should create app" do
     assert_difference('App.count') do
-      post :create, app: {  }
+      post :create, app: {name: 'name', itunes_id: 540328259  }
     end
 
     assert_redirected_to app_path(assigns(:app))
@@ -35,7 +35,7 @@ class AppsControllerTest < ActionController::TestCase
   end
 
   test "should update app" do
-    patch :update, id: @app, app: {  }
+    patch :update, id: @app, app: {name: 'name', itunes_id: 540328259  }
     assert_redirected_to app_path(assigns(:app))
   end
 

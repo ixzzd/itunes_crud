@@ -68,6 +68,7 @@ class AppsController < ApplicationController
   def import_reviews
     ItunesCrud::Application.load_tasks
     Rake.application.invoke_task("review:import[#{params[:id]}]")
+    Rake::Task['review:import'].reenable
     respond_to do |format|
       format.js {render inline: "location.reload();" }
     end
@@ -80,6 +81,6 @@ class AppsController < ApplicationController
     end
 
     def app_params
-      params.require(:app).permit(:name, :itunes_id)
+      params.require(:app).permit(:name, :itunes_id, :image_url)
     end
 end

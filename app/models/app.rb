@@ -3,7 +3,7 @@ class App < ActiveRecord::Base
 	
 	validates :name, :presence => true
 	validates :itunes_id, :presence => true, :format => { :with => /\d{9}/, :message => "iTunes id has wrong format" }
-	validate :image_itunes_id
+	# validate :image_itunes_id
 
 	before_save :save_image
 
